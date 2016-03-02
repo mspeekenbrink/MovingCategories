@@ -69,11 +69,11 @@ instructions5 = 'If you have any questions, please ask the experimenter now. Oth
 
 continueText = 'Press any key to continue'
 
-expInfo = {'subject':'test', 'condition':1}
+expInfo = {'subject':'test', 'condition':1, 'sex':['male','female'],'age':19}
 
 expInfo['dateStr']= data.getDateStr() #add the current time
 #present a dialogue to change params
-dlg = gui.DlgFromDict(expInfo, title='Category Learing', fixed=['dateStr'])
+dlg = gui.DlgFromDict(expInfo, title='Category Learing', fixed=['dateStr'],order=['subject','condition','dateStr','sex','age'])
 if dlg.OK:
     misc.toFile('lastParams.pickle', expInfo)#save params to file for next time
 else:
@@ -92,7 +92,7 @@ else:
 
 dataFile = open(fileName+'.csv', 'w')#a simple text file with 'comma-separated-values'
 
-dataFile.write('condition = ' + str(condition) + '; responseOrder = ' + str(responseOptions[0]) + '_' + str(responseOptions[1]) + '; featureOrder = ' + str(featureOptions[0]) + '_' + str(featureOptions[1]) + '\n')
+dataFile.write('id = ' + str(expInfo['subject']) + '; sex = ' + expInfo['sex'] + '; age = ' + str(expInfo['age']) + '; condition = ' + str(condition) + '; responseOrder = ' + str(responseOptions[0]) + '_' + str(responseOptions[1]) + '; featureOrder = ' + str(featureOptions[0]) + '_' + str(featureOptions[1]) + '\n')
 
 win = visual.Window(resolution,allowGUI=False, monitor='Dell 17Inch', units='norm')
 

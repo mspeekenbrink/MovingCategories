@@ -18,7 +18,7 @@ transferTrials = 24
 currentTrial = 1
 correctChoices = 0
 nCorrect = 0
-itiTime = 800
+itiTime = 500
 feedTime = 1000
 optionBoxColor = '#FFFFFF'
 optionBoxFillColor = '#CCCCCC'
@@ -56,7 +56,7 @@ instructions2 += 'After making your classification, you will be informed of the 
 instructions2 += 'When you made a correct classification, your selection will be coloured green and you\'ll hear a chime sound. When '
 instructions2 += 'you made an incorrect classification, your selection will be coloured in red and you\'ll hear a buzzer sound.'
 
-instructions3 = 'You will be asked to give a total of 700 classifications. The relation between the patterns and categories '
+instructions3 = 'You will be asked to classify a total of 700 patterns. The relation between the patterns and categories '
 instructions3 += 'is not perfect, so you will not be able to always give the '
 instructions3 += 'correct classification. At first the task may be difficult, but your performance should increase with practice.\n\n'
 instructions3 += 'Note that the relation between the patterns and the categories may change during the task, so you may have to change '
@@ -98,17 +98,17 @@ win = visual.Window(resolution,allowGUI=False, monitor='Dell 17Inch', units='nor
 
 def angle_fun(x):
     #return 15 + (x+1)*30
-    return x - 90.0
+    return x #- 90.0
 
 def freq_fun(x):
-    #return 0.2 * x - 1
-    return (0.2121 * x - 13.6161)/(.4*resolution[1])
+    # maps min (97 - 3*sqrt(162.5)) to 1.5 and max (123 + 3*sqrt(162.5)) to 18 cycles per stimulus
+    return (0.1609913 * x - 7.95824)/(stimulusHeight*resolution[1])
 
 #display instructions and wait
 instructions = visual.TextStim(win, pos=[0,0],text='Press any key to start')
 instructions.setHeight(.08)
-cont = visual.TextStim(win, pos=[1,-1], text = 'Press any key to continue', alignHoriz = 'right', alignVert = 'bottom')
-cont.setHeight(.08)
+cont = visual.TextStim(win, pos=[.98,-.98], text = 'Press any key to continue', alignHoriz = 'right', alignVert = 'bottom')
+cont.setHeight(.05)
 instructions.draw()
 win.flip()
 
